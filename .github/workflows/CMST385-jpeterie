@@ -1,0 +1,16 @@
+name: Deploy HTML FIles to AppService - CMST385-jpeterie
+on:
+  push:
+    branches:
+      -main
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+      steps:
+      -uses: actions/checkout@main
+      -name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v1
+      with:
+        app-name: 'CMST385-jpeterie'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AppServiceCMST385 }}
